@@ -48,7 +48,7 @@
               ],
               "body": {
                 "mode": "raw",
-                "raw": "{\n  \"transaction_status\": \"capture\",\n  \"order_id\": \"ORDER-123\",\n  \"gross_amount\": 100000\n}"
+                "raw": "{\n  \"va_numbers\": [\n    {\n      \"bank\": \"bca\",\n      \"va_number\": \"1234567890\"\n    }\n  ],\n  \"transaction_time\": \"2025-09-21 12:34:56\",\n  \"transaction_status\": \"capture\",\n  \"transaction_id\": \"c6d754c5-1f9e-488a-81b2-d8d7ef443c75\",\n  \"status_message\": \"Success\",\n  \"status_code\": \"200\",\n  \"signature_key\": \"your_signature_key_here\",\n  \"settlement_time\": \"2025-09-21 12:35:00\",\n  \"payment_type\": \"bank_transfer\",\n  \"payment_amount\": [\n    {\n      \"amount\": \"100000\",\n      \"currency\": \"IDR\"\n    }\n  ],\n  \"order_id\": \"c6d754c5-1f9e-488a-81b2-d8d7ef443c75\",\n  \"merchant_id\": \"your_merchant_id_here\",\n  \"gross_amount\": \"100000\",\n  \"fraud_status\": \"accept\",\n  \"currency\": \"IDR\",\n  \"acquirer\": \"bca\"\n}"
               },
               "url": {
                 "raw": "{{base_url}}/api/v1/payment/webhook",
