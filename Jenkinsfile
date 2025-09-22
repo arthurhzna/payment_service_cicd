@@ -39,8 +39,8 @@ pipeline {
       steps {
         script {
           echo "GIT_BRANCH: ${env.GIT_BRANCH}"
-          if (env.GIT_BRANCH == 'origin/main') {
-            env.TARGET_BRANCH = 'main'
+          if (env.GIT_BRANCH == 'origin/master') {
+            env.TARGET_BRANCH = 'master'
           } else if (env.GIT_BRANCH == 'origin/development') {
             env.TARGET_BRANCH = 'development'
           }
@@ -117,7 +117,7 @@ pipeline {
     stage('Deploy to Remote Server') {
       steps {
         script {
-          def targetDir = "/home/arthurhozanna123/go/payment-service"
+          def targetDir = "/home/arthurhozana123/go/payment-service"
           def sshCommandToServer = """
           ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${USERNAME}@${HOST} '
             if [ -d "${targetDir}/.git" ]; then
@@ -133,7 +133,7 @@ pipeline {
             cp .env.example .env
             sed -i "s/^TIMEZONE=.*/TIMEZONE=Asia\\/Jakarta/" "${targetDir}/.env"
             sed -i "s/^CONSUL_HTTP_URL=.*/CONSUL_HTTP_URL=${CONSUL_HTTP_URL}/" "${targetDir}/.env"
-            sed -i "s/^CONSUL_HTTP_PATH=.*/CONSUL_HTTP_PATH=backend\\/payment-service/" "${targetDir}/.env"
+            sed -i "s/^CONSUL_HTTP_PATH=.*/CONSUL_HTTP_PATH=payment-service/" "${targetDir}/.env"
             sed -i "s/^CONSUL_HTTP_TOKEN=.*/CONSUL_HTTP_TOKEN=${CONSUL_HTTP_TOKEN}/" "${targetDir}/.env"
             sed -i "s/^CONSUL_WATCH_INTERVAL_SECONDS=.*/CONSUL_WATCH_INTERVAL_SECONDS=${CONSUL_WATCH_INTERVAL_SECONDS}/" "${targetDir}/.env"
             sudo docker compose up -d --build --force-recreate
